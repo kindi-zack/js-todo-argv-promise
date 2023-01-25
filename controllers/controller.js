@@ -43,12 +43,13 @@ class Controller {
     }
 
     static editTodo(inputs) {
-        Model.editTodo(inputs, (err, dataEdit) => {
-            if(err) {
-                View.showErr(err)
-            }else {
-                View.editTodo(dataEdit)
-            }
+        Model.editTodo(inputs)
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => {
+            console.log(err)
+            console.log('### ERROR ###')
         })
     }
 

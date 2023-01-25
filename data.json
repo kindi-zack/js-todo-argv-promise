@@ -61,26 +61,14 @@
   },
   {
     "id": 11,
-    "todo": "coba Promise",
+    "todo": "data baru",
     "complete": "❌",
-    "createdAt": "2023-01-23T12:22:56.051Z"
+    "createdAt": "2023-01-25T04:28:56.615Z"
   },
   {
     "id": 12,
-    "todo": "coba Promise",
+    "todo": "data baru",
     "complete": "❌",
-    "createdAt": "2023-01-23T12:23:14.238Z"
-  },
-  {
-    "id": 13,
-    "todo": "coba Promise",
-    "complete": "❌",
-    "createdAt": "2023-01-23T12:24:20.544Z"
-  },
-  {
-    "id": 14,
-    "todo": "coba Promise",
-    "complete": "❌",
-    "createdAt": "2023-01-23T12:24:29.807Z"
+    "createdAt": "2023-01-25T04:26:41.330Z"
   }
 ]

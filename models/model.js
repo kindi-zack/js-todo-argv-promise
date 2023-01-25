@@ -80,7 +80,6 @@ class Model {
                 return instTodo
             })
             .then((instTodo) => {
-                // this.writeToDb(dataJson)
                 return resoleve(instTodo) 
             })
             .catch(err => {
@@ -121,39 +120,35 @@ class Model {
         })
     }
 
-    // static editTodo(inputs, cb) {
-    //     let [id, todo] = inputs
-    //     //ginama kalau id bukan number
-    //     id = +id
+    static editTodo(inputs) {
+        return new Promise((resoleve, rejects) => {
+            let [id, newTodo] = inputs
+            id = +id
+            if(!id || !newTodo) return rejects("Insert id and new Todo") 
 
-    //     this.list((err, dataJson) => {
-    //         if(err) {
-    //             cb(err)
-    //         }else {
-    //             let newTodo;
-                
-    //             this.list((err, dataJson) => {
-    //                 dataJson = dataJson.map(item => {
-    //                                 if(item.id == id) {
-    //                                     newTodo = item
-    //                                     return new Todo(id, todo)
-    //                                 }else {
-    //                                     return item
-    //                                 }
-    //                             })
+            this.list()
+            .then(dataJson => {
+                let oldTodo;
 
-    //                 if(!newTodo) return cb(`id ${id} tidak ditemukan`)                
+                dataJson = dataJson.map(item => {
+                    if(item.id === id) {
+                        oldTodo = item
+                        return new Todo (id, newTodo)
+                    }else {
+                        return item
+                    }
+                })
                 
-    //                 this.writeToDb(dataJson, (err, res) => {
-    //                     if(err) {
-    //                         cb(err)
-    //                     }
-    //                 })
-    //                 cb(null, newTodo)  
-    //             })         
-    //         }
-    //     })
-    // }
+                if(!oldTodo) return rejects(`id ${id} tidak tersedia dalam database`)
+                this.writeToDb(dataJson)
+
+                return resoleve(oldTodo)
+            })
+            .catch(err => {
+                return rejects(err)
+            })
+        })
+    }
 }
 
 module.exports = {Model, Todo}
